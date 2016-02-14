@@ -10,7 +10,7 @@
 
 @interface MSTwitterSplashScreen : UIView
 
-@property (nonatomic, assign) CGFloat durationAnimation;
+@property(nonatomic, assign) CGFloat durationAnimation;
 
 - (instancetype)initSplashScreenWithBezierPath:(UIBezierPath *)bezierPath
                                backgroundColor:(UIColor *)backgroundColor
@@ -22,5 +22,6 @@
                                      logoColor:(UIColor *)logoColor;
 
 - (void)startAnimation;
+- (void)startAnimationWithCompletionHandler:(void (^)())completionHandler;
 
 @end

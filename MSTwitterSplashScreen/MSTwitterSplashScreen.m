@@ -18,7 +18,7 @@
 
 @implementation MSTwitterSplashScreen
 
-static CGFloat const sizeScale = .2f;
+static CGFloat const sizeScale = .5f;
 
 - (instancetype)initSplashScreenWithBezierPath:(UIBezierPath *)bezierPath
                                backgroundColor:(UIColor *)backgroundColor
@@ -79,6 +79,7 @@ static CGFloat const sizeScale = .2f;
     shapeLayer.bounds = [self layerSizeRect];
     shapeLayer.path = logoPath;
     shapeLayer.anchorPoint = CGPointZero;
+    shapeLayer.fillRule = kCAFillRuleEvenOdd;
     return shapeLayer;
 }
 
@@ -114,7 +115,7 @@ static CGFloat const sizeScale = .2f;
     self.animationCompletionHandler = completionHandler;
     self.logoAnimation.delegate = self;
     [self.gradientLayer addAnimation:self.logoAnimation forKey:nil];
-    [self performSelector:@selector(setBackgroundColor:) withObject:[UIColor clearColor] afterDelay:self.durationAnimation * 0.45];
+    [self performSelector:@selector(setBackgroundColor:) withObject:[UIColor clearColor] afterDelay:self.durationAnimation * 0.3];
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
@@ -137,8 +138,8 @@ static CGFloat const sizeScale = .2f;
 {
     if (!_logoAnimation) {
         CAKeyframeAnimation *keyFrameAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
-        keyFrameAnimation.values = @[@1, @0.9, @300];
-        keyFrameAnimation.keyTimes = @[@0, @0.4, @1];
+        keyFrameAnimation.values = @[@1, @0.6, @600];
+        keyFrameAnimation.keyTimes = @[@0, @0.2, @1];
         keyFrameAnimation.duration = self.durationAnimation;
         keyFrameAnimation.removedOnCompletion = NO;
         keyFrameAnimation.fillMode = kCAFillModeForwards;
